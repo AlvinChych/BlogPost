@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BlogPost</string>
+    <string name="refresh">Refresh</string>
+    <string name="touch_test">Touch Test</string>
+    <string name="fragment_test">Fragment Test</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_test_fragment">Hello TestFragment</string>
+    <string name="add_fragment">add fragment</string>
+    <string name="replace_fragment">replace fragment</string>
+    <string name="add_activity">add activity</string>
 </resources>
