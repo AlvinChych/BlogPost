@@ -16,6 +16,21 @@
         android:theme="@style/Theme.BlogPost"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ShowBlogActivityD"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.ShowBlogActivityC"
+            android:exported="false"
+            android:theme="@style/Theme.BlogPost" />
+        <activity
+            android:name=".ui.ShowBlogActivityB"
+            android:exported="false"
+            android:theme="@style/Theme.BlogPost" />
+        <activity
+            android:name=".ui.ShowBlogActivityA"
+            android:exported="false"
+            android:theme="@style/Theme.BlogPost" />
+        <activity
             android:name=".ui.FragmentTestActivity"
             android:exported="false" />
         <activity
@@ -24,7 +39,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.BlogPost">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

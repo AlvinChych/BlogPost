@@ -10,6 +10,14 @@ import com.alvinchych.blogpost.repository.BlogRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,9 +36,8 @@ class BlogViewModel @Inject constructor(private val blogRepository: BlogReposito
     private var _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>> = _posts
 
-    init {
-//        Log.d(BlogViewModel::class.simpleName, "Init BlogViewModel")
-    }
+    private val _postsState = MutableStateFlow<List<Post>>(emptyList())
+    val postsState = _postsState.asStateFlow()
 
     fun fetchBlogLegacy() {
         if (!isLoading) {
@@ -67,6 +74,27 @@ class BlogViewModel @Inject constructor(private val blogRepository: BlogReposito
                             pages++
                             val currentPosts = _posts.value ?: listOf()
                             _posts.postValue(currentPosts + posts)
+                        }
+                    }
+                }
+                isLoading = false
+            }
+        }
+    }
+
+    fun fetchBlogState() {
+        if (!isLoading) {
+            isLoading = true
+            CoroutineScope(Dispatchers.IO).launch {
+//                delay(1000)
+                val result = blogRepository.getPosts(pages, LIMIT)
+                if (result.isSuccess) {
+                    result.getOrNull()?.let { posts ->
+                        if (posts.isNotEmpty()) {
+                            pages++
+                            _postsState.update { currentPosts ->
+                                currentPosts + posts
+                            }
                         }
                     }
                 }
