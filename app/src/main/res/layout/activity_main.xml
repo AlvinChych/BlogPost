@@ -59,5 +59,12 @@
             android:layout_height="wrap_content"
             android:text="@string/touch_test"
             tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/compose_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/compose_test"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,4 +59,6 @@
     </string>
     <string name="title_activity_show_blog_e">ShowBlogActivityE</string>
     <string name="adapter_with_lazy_column">adapter with lazy column</string>
+    <string name="title_activity_top_bottom_bar">TopBottomBarActivity</string>
+    <string name="compose_test">Compose Test</string>
 </resources>

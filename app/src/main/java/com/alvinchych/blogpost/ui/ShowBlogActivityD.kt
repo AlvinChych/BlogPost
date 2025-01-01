@@ -68,24 +68,6 @@ fun ShowBlogScreenD(
 ) {
     val posts by viewModel.postsState.collectAsStateWithLifecycle()
     BlogPostTheme {
-        ShowPage(
-            modifier = modifier,
-            posts = posts,
-            onPostClicked = onPostClicked,
-            onLoadMore = onLoadMore
-        )
-    }
-}
-
-@Composable
-fun ShowPage(
-    modifier: Modifier = Modifier,
-    posts: List<Post>,
-    onPostClicked: (Post) -> Unit,
-    onLoadMore: () -> Unit
-) {
-
-    BlogPostTheme {
         Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
             Column(
                 modifier = modifier
@@ -97,25 +79,38 @@ fun ShowPage(
                     fontSize = 24.sp,
                     modifier = modifier.fillMaxWidth()
                 )
-                LazyColumn {
-                    items(posts) { post ->
-                        PostItem(post = post, onPostClicked = onPostClicked)
-                    }
+                ShowPosts(
+                    posts = posts,
+                    onPostClicked = onPostClicked,
+                    onLoadMore = onLoadMore
+                )
+            }
+        }
+    }
+}
 
-                    item {
-                        if (posts.isNotEmpty()) {
-                            LaunchedEffect(Unit) {
-                                onLoadMore()
-                            }
-                            CircularProgressIndicator(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp)
-                                    .wrapContentWidth(Alignment.CenterHorizontally)
-                            )
-                        }
-                    }
+@Composable
+fun ShowPosts(
+    posts: List<Post>,
+    onPostClicked: (Post) -> Unit,
+    onLoadMore: () -> Unit
+) {
+    LazyColumn {
+        items(posts) { post ->
+            PostItem(post = post, onPostClicked = onPostClicked)
+        }
+
+        item {
+            if (posts.isNotEmpty()) {
+                LaunchedEffect(Unit) {
+                    onLoadMore()
                 }
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                )
             }
         }
     }
@@ -162,7 +157,7 @@ fun ShopScreenPreview() {
         Post(3, 3, "title 3", "content 3"),
         Post(4, 4, "title 4", "content 4"),
     )
-    ShowPage(
+    ShowPosts(
         posts = posts,
         onPostClicked = {},
         onLoadMore = {}

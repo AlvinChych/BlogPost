@@ -16,8 +16,13 @@
         android:theme="@style/Theme.BlogPost"
         tools:targetApi="31">
         <activity
+            android:name=".ui.TopBottomBarActivity"
+            android:exported="false"
+            android:label="@string/title_activity_top_bottom_bar"
+            android:theme="@style/Theme.BlogPost" />
+        <activity
             android:name=".ui.ShowBlogActivityD"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ui.ShowBlogActivityC"
             android:exported="false"

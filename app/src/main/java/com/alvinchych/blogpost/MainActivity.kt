@@ -9,6 +9,7 @@ import com.alvinchych.blogpost.ui.ShowBlogActivityA
 import com.alvinchych.blogpost.ui.ShowBlogActivityB
 import com.alvinchych.blogpost.ui.ShowBlogActivityC
 import com.alvinchych.blogpost.ui.ShowBlogActivityD
+import com.alvinchych.blogpost.ui.TopBottomBarActivity
 import com.alvinchych.blogpost.ui.TouchEventTestActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -50,6 +51,11 @@ class MainActivity : ComponentActivity() {
         binding.fragmentTest.setOnClickListener {
             val intent = Intent(this, FragmentTestActivity::class.java)
             intent.putExtra(FragmentTestActivity.ACTIVITY_PARAM_COUNT, 0)
+            startActivity(intent)
+        }
+
+        binding.composeTest.setOnClickListener {
+            val intent = Intent(this, TopBottomBarActivity::class.java)
             startActivity(intent)
         }
     }
