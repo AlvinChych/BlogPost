@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.alvinchych.blogpost.api.Post
 import com.alvinchych.blogpost.databinding.ItemPostBinding
 
-class PostAdapter: ListAdapter<Post, PostAdapter.PostViewHolder>(DIFF_CALLBACK) {
+class PostAdapter(private val onItemClicked: (post: Post) -> Unit): ListAdapter<Post, PostAdapter.PostViewHolder>(DIFF_CALLBACK) {
     
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Post>() {
@@ -26,20 +26,20 @@ class PostAdapter: ListAdapter<Post, PostAdapter.PostViewHolder>(DIFF_CALLBACK) 
         }
     }
     
-    class PostViewHolder(private val binding: ItemPostBinding): ViewHolder(binding.root) {
+    class PostViewHolder(val onItemClicked: (post: Post) -> Unit, private val binding: ItemPostBinding): ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(post: Post) {
             binding.title.text = "${post.id}. ${post.title}"
             binding.content.text = post.content
             binding.root.setOnClickListener {
-
+                onItemClicked(post)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context))
-        return PostViewHolder(binding)
+        return PostViewHolder(onItemClicked, binding)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {

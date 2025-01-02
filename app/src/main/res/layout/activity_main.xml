@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttons"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/blog"
+    <LinearLayout
+        android:id="@+id/show_blog"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttons"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttons"
-            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/other_test"
+        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/show_a"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:text="@string/adapter_1"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/show_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adapter_2"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/show_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adapter_3"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/show_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adapter_4"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/refresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/refresh"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/touch_test"
-                app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/other_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/fragment_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_test"
+            tools:ignore="ButtonStyle" />
 
-            <Button
-                android:id="@+id/touch_test"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/touch_test"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/fragment_test"
-                app:layout_constraintStart_toEndOf="@id/refresh" />
+        <Button
+            android:id="@+id/touch_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/touch_test"
+            tools:ignore="ButtonStyle" />
 
-            <Button
-                android:id="@+id/fragment_test"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/fragment_test"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/touch_test" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</LinearLayout>
+        <Button
+            android:id="@+id/compose_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/compose_test"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
