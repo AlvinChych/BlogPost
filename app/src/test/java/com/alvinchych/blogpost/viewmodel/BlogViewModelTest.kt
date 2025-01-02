@@ -52,7 +52,7 @@ class BlogViewModelTest {
         coEvery { blogRepository.getPosts(any(), any()) } returns result
 
         viewModel = BlogViewModel(blogRepository)
-        viewModel.fetchBlog()
+        viewModel.fetchBlogToLiveData()
 
         var posts: List<Post>? = null
         val latch = CountDownLatch(1)

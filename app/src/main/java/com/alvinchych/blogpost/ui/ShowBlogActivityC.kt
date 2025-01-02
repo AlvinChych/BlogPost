@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.alvinchych.blogpost.R
 import com.alvinchych.blogpost.databinding.ActivityShowBlogBBinding
 import com.alvinchych.blogpost.viewmodel.BlogViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,11 +56,11 @@ class ShowBlogActivityC : AppCompatActivity() {
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (totalItemCount <= firstVisibleItemPosition + visibleItemCount) {
-                    viewModel.fetchBlog()
+                    viewModel.fetchBlogToLiveData()
                 }
             }
         })
 
-        viewModel.fetchBlog()
+        viewModel.fetchBlogToLiveData()
     }
 }

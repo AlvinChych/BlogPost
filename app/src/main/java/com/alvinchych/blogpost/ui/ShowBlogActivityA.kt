@@ -59,12 +59,12 @@ class ShowBlogActivityA : AppCompatActivity() {
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (totalItemCount <= firstVisibleItemPosition + visibleItemCount) {
-                    viewModel.fetchBlog()
+                    viewModel.fetchBlogToLiveData()
                 }
             }
         })
 
-        viewModel.fetchBlog()
+        viewModel.fetchBlogToLiveData()
     }
 
     class BlogViewModelFactory(private val blogRepository: BlogRepository): ViewModelProvider.Factory {

@@ -51,11 +51,11 @@ class ShowBlogActivityD : ComponentActivity() {
                     Toast.makeText(this, "Clicked ${post.title}", Toast.LENGTH_SHORT).show()
                 },
                 onLoadMore = {
-                    viewModel.fetchBlogState()
+                    viewModel.fetchBlogToStateFlow()
                 }
             )
         }
-        viewModel.fetchBlogState()
+        viewModel.fetchBlogToStateFlow()
     }
 }
 

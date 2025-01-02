@@ -1,22 +1,15 @@
 package com.alvinchych.blogpost.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.alvinchych.blogpost.api.Post
 import com.alvinchych.blogpost.repository.BlogRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -63,7 +56,7 @@ class BlogViewModel @Inject constructor(private val blogRepository: BlogReposito
         }
     }
 
-    fun fetchBlog() {
+    fun fetchBlogToLiveData() {
         if (!isLoading) {
             isLoading = true
             CoroutineScope(Dispatchers.IO).launch {
@@ -82,7 +75,7 @@ class BlogViewModel @Inject constructor(private val blogRepository: BlogReposito
         }
     }
 
-    fun fetchBlogState() {
+    fun fetchBlogToStateFlow() {
         if (!isLoading) {
             isLoading = true
             CoroutineScope(Dispatchers.IO).launch {

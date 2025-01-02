@@ -56,11 +56,11 @@ class ShowBlogActivityB : AppCompatActivity() {
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                 if (totalItemCount <= firstVisibleItemPosition + visibleItemCount) {
-                    viewModel.fetchBlog()
+                    viewModel.fetchBlogToLiveData()
                 }
             }
         })
 
-        viewModel.fetchBlog()
+        viewModel.fetchBlogToLiveData()
     }
 }
